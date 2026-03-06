@@ -1,0 +1,6 @@
+,,success,success,confidence_drop,confidence_drop,efficiency,efficiency,l2_norm,l2_norm
+,,mean,std,mean,std,mean,std,mean,std
+experiment,mode,,,,,,,,
+B_Fixed_L0,full,1.0,0.0,0.053,0.0064,0.0053,0.0007,10.0265,0.2716
+B_Fixed_L0,lesion,0.4714,0.501,0.016,0.0092,0.0053,0.002,2.8599,0.9164
+B_Fixed_L0,random_patch,0.1929,0.396,0.0084,0.007,0.0023,0.0013,3.2157,1.329

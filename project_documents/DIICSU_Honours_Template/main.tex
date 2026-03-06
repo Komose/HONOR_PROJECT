@@ -1,0 +1,308 @@
+% DIICSU Honours Project LaTeX Template
+
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{geometry}
+\usepackage{cmbright} 
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{sample.bib}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{appendix}
+\usepackage{fancyhdr}
+\usepackage{lipsum}  % For placeholder text, remove in final document
+
+% Page layout
+\geometry{
+    left=1in,
+    right=1in,
+    top=1in,
+    bottom=1in,
+    includeheadfoot
+}
+
+% Single spacing (as per requirements)
+\singlespacing
+
+% Set font size to 12pt
+\renewcommand{\normalsize}{\fontsize{12}{14}\selectfont}
+
+% Title formatting
+\titleformat{\section}
+    {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+    {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+    {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}
+    {\normalfont\normalsize\itshape}{\theparagraph}{1em}{}
+
+% Table of Contents formatting
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\contentsname}{Table of Contents}
+\setcounter{tocdepth}{3}  % Show up to subsubsection level
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Caption formatting
+\captionsetup{labelfont=bf, justification=raggedright, singlelinecheck=false}
+
+% Code listing style
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    tabsize=4,
+    showstringspaces=false
+}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=blue,
+    urlcolor=blue,
+    pdftitle={DIICSU Honours Project},
+    pdfauthor={Student Name}
+}
+
+% Custom commands
+\newcommand{\projecttitle}[1]{\title{#1}}
+\newcommand{\studentname}[1]{\author{#1}}
+\newcommand{\studentid}[1]{\newcommand{\thestudentid}{#1}}
+\newcommand{\supervisor}[1]{\newcommand{\thesupervisor}{#1}}
+
+% Abstract environment
+\renewenvironment{abstract}
+    {\small
+    \begin{center}
+    \textbf{Abstract}
+    \end{center}
+    \quotation}
+    {\endquotation}
+
+% Acknowledgements section
+\newcommand{\acknowledgments}[1]{
+    \section*{Acknowledgments}
+    #1
+    \addcontentsline{toc}{section}{Acknowledgments}
+}
+
+% Appendix setup
+\renewcommand{\appendixname}{Appendices}
+\renewcommand{\appendixtocname}{Appendices}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\LARGE\textbf{\projecttitle}}\\
+    \vspace{1cm}
+    
+    {\Large Student name}\\
+    \vspace{0.5cm}
+    
+    {\Large Student ID}\\
+    \vspace{1cm}
+    
+    {\LARGE\textbf{DI40001 DIICSU Honours Project}}\\
+    \vspace{1cm}
+    
+    {\Large Supervisor: }\\
+    \vspace{2cm}
+    
+    \vfill
+    \today
+\end{titlepage}
+
+% Abstract page
+\begin{abstract}
+    The abstract (or 'executive summary') is an important part of your report. In essence, it is a summary of the purpose, methods, findings, and conclusions of your project. It should be no more than 300 words. It should be clearly and concisely written. Provide only the most pertinent information, avoid citing references, and include a brief statement of your main conclusions.
+    
+    \textbf{Keywords:} keyword1, keyword2, keyword3 (optional)
+\end{abstract}
+
+\newpage
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% Acknowledgments
+\acknowledgments{
+    You can provide acknowledgements here to anyone who has been helpful in your project, or beyond. In some cases, the licensing of certain software products you have used may require you to acknowledge them here, e.g., in return for free use.
+}
+
+\newpage
+
+% Main content
+\section{Introduction}
+\label{sec:introduction}
+
+The report should be formatted as a left-justified, single-spaced, 12pt font document using an appropriate word processing system such as Microsoft Word, OpenOffice Writer or LaTeX and converted to a PDF file. The length of the report is likely to depend, for example, on the number of images included. As a guide, you should aim for about 35 pages. The minimum word count is 15,000 words. The general layout of the report should follow the example document, but the number of sections and their headings may vary by project. The report should be written in a formal style: it is neither a diary nor a magazine article. All pages should be numbered.
+
+All references should be cited in the main body of the report the IEEE referencing format should be used. Here is an example paragraph which uses the IEEE reference format: Bloggs and Jones \cite{bloggs2020} found that there is no silver bullet for creating the perfect project. However, Mouse \cite{mouse2112} is convinced that the breakthrough could come via automation. Meanwhile, Stein et al. \cite{stein2053} outline the drawbacks of applying an overly complex solution when a combination of automation and human intervention should co-exist.
+
+\section{Literature Review}
+\label{sec:literature-review}
+
+% Your literature review content here
+
+\section{Methodology}
+\label{sec:methodology}
+
+% Your methodology content here
+
+\section{Implementation}
+\label{sec:implementation}
+
+There are occasions in your report where it might be helpful to refer to an equation, such as Equation (\ref{eq:emc2}).
+
+\begin{equation}
+E = mc^2
+\label{eq:emc2}
+\end{equation}
+
+More generally, you will almost certainly want to use some figures or tables throughout your document, such as Figure \ref{fig:pattern} and Table \ref{tab:performance} below. These should include captions and cross-references within your text where you wish to reference them. In addition, when you include a figure, screenshot, graph, diagram, table, or similar item in your report, you must explain to the reader what the figure shows and/or what you are attempting to draw their attention to or emphasize. For example, see Figure \ref{fig:pattern} below, which shows a diagram of an extremely important pattern.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{media/image1.png}
+    \caption{A diagram of an extremely important pattern.}
+    \label{fig:pattern}
+\end{figure}
+
+At this point in your report. If you didn't say any more about Figure \ref{fig:pattern} above, the reader would have no idea whether the pattern it contains is essential or not. Please say a little more about what you need the reader to know, or what you wish to emphasize, highlight, or draw their attention to. Please see the example below regarding a table.
+
+Please see Table \ref{tab:performance} below, which presents the initial results of performance testing using method A. For each data set, it shows the error rate (\%) and time (seconds).
+
+\begin{table}[H]
+    \centering
+    \caption{Performance of Method A: Initial Results}
+    \label{tab:performance}
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Test data} & \textbf{Error rate (\%)} & \textbf{Time (sec.)} \\
+        \midrule
+        \textit{Set 1} & 70 & 3.1 \\
+        \textit{Set 2} & 74 & 8.0 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+As Table \ref{tab:performance} shows, whilst Set 1 and Set 2 have comparable error rates, the performance, in seconds, of Set 2 is much slower, and this was deemed to be impactful on the requirements of the machine learning algorithms to be employed.
+
+You may wish to include code snippets in your report to accompany your discussion of the implementation. Commonly, these may be included as screenshots of the relevant code sections. It is best to keep these focused on specific areas of the code, e.g., on a particular method or a section of a technique. An example of this is below; please see Figure \ref{fig:code-snippet}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{media/image2.png}
+    \caption{Code Snippet - creating a table in LateX}
+    \label{fig:code-snippet}
+\end{figure}
+
+Alternatively, you can use the \texttt{lstlisting} environment for code:
+
+\begin{lstlisting}[language=Python, caption={Python code example}, label=lst:example]
+def calculate_average(numbers):
+    """
+    Calculate the average of a list of numbers.
+    """
+    if not numbers:
+        return 0
+    return sum(numbers) / len(numbers)
+\end{lstlisting}
+
+\section{Results and Discussion}
+\label{sec:results}
+
+% Your results and discussion content here
+
+\section{Conclusions and Future Work}
+\label{sec:conclusions}
+
+\subsection{Using subsections in your report}
+
+Remember, you can use subsections throughout your report to structure the content. This is often desirable to break up large expanses of text and to aid the reader, too. Examples of subsections here, in the Evaluation section, could be general, such as Methodology or Results, and/or specific, such as Usability, Performance, etc.
+
+\subsubsection{Here is a sub-subsection}
+
+You can use additional layers of hierarchy to structure the content progressively. In this case, if there were a subsection named Methodology, perhaps it could contain sub-subsections such as Participants, Tasks, Ethics, etc.
+
+\paragraph{Be mindful of taking the structure too far}
+
+Whilst you can use as many hierarchies as you wish in structuring your content, there is usually a limit to what is helpful in terms of readability. Aim to go no more than three layers deep in the hierarchy, if possible.
+
+% References
+\newpage
+\section*{References}
+\addcontentsline{toc}{section}{References}
+\printbibliography[heading=none]
+
+% Appendices
+\newpage
+\begin{appendices}
+    \section{Appendices}
+    \label{sec:appendices}
+    
+Include supplementary material that is too detailed for the main body. It must include:
+    
+    \begin{itemize}
+        \item Risk Assessment
+        \item Ethics Form
+        \item Project Plan
+        \item AI Declaration
+        \item Minutes of supervisor meetings
+    \end{itemize}
+    
+It may include (depending on the project type):
+    
+    \begin{itemize}
+        \item Full datasets.
+        \item Extensive source code listings.
+        \item Detailed mathematical derivations.
+        \item Full survey questions or interview transcripts.
+        \item Large engineering drawings or schematics.
+        \item User manuals for developed software.
+    \end{itemize}
+    
+If any of these are better presented digitally, you can provide a OneDrive Share link instead of including them directly in the document. This should be viewable by anyone in the University.
+    
+    \section{Risk Assessment}
+    % Risk assessment content here
+    
+    \section{Ethics Form}
+    % Ethics form content here
+    
+    \section{Project Plan}
+    % Project plan content here
+    
+    \section{AI Declaration}
+    % AI declaration content here
+    
+    \section{Supervisor Meeting Minutes}
+    % Meeting minutes content here
+\end{appendices}
+
+\end{document}

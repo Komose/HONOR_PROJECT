@@ -1,0 +1,36 @@
+# Requirements for Lesion-Aware Adversarial Attacks Project
+# HONER_PROJECT - Dissertation Research
+
+# Core dependencies
+torch>=1.12.0
+torchvision>=0.13.0
+numpy>=1.21.0
+pandas>=1.3.0
+
+# Data handling
+h5py>=3.7.0
+Pillow>=9.0.0
+
+# Machine learning utilities
+scikit-learn>=1.0.0
+scipy>=1.7.0
+
+# Visualization
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# Progress bars
+tqdm>=4.62.0
+
+# Optional: CLIP (if using OpenAI's pretrained models)
+# ftfy>=6.0.0
+# regex>=2021.0.0
+
+# Optional: Jupyter for notebooks
+# jupyter>=1.0.0
+# ipywidgets>=7.6.0
+
+# Development dependencies (optional)
+# pytest>=6.2.0
+# black>=21.0
+# flake8>=4.0.0

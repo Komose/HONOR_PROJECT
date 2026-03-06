@@ -1,0 +1,11 @@
+{
+  "model_path": "CheXzero/checkpoints/chexzero_weights/best_64_0.0001_original_35000_0.864.pt",
+  "num_samples": 200,
+  "auroc": null,
+  "accuracy_at_0.5": 0.975,
+  "tpr_at_0.5": 0.975,
+  "prediction_mean": 0.51611328125,
+  "prediction_std": 0.0057525634765625,
+  "prediction_min": 0.49462890625,
+  "prediction_max": 0.5283203125
+}

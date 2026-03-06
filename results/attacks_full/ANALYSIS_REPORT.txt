@@ -1,0 +1,75 @@
+================================================================================
+RSNA ADVERSARIAL ATTACK EXPERIMENT RESULTS
+Lesion-Targeted vs Full-Image Attacks on CheXzero
+================================================================================
+
+## EXPERIMENTAL SETUP
+--------------------------------------------------------------------------------
+Dataset: RSNA Pneumonia Detection Challenge
+Model: CheXzero (CLIP-based Foundation Model)
+Number of Samples: 200 (all pneumonia-positive)
+Baseline Accuracy: 97.5% @ threshold 0.5
+
+## ATTACK SUMMARY
+--------------------------------------------------------------------------------
+     attack   mode  num_samples  success_rate  num_success  prob_change_mean  prob_change_std    l0_mean       l0_std   l2_mean   l2_std  linf_mean     linf_std
+  FGSM_eps4 lesion          200         0.095           19          -0.00815         0.004536  18034.715 14367.430136  1.941398 0.817669   0.015686 0.000000e+00
+  FGSM_eps4   full          200         0.425           85          -0.01735         0.003990 147641.790   740.814151  6.027304 0.015137   0.015686 5.241047e-17
+  FGSM_eps8 lesion          200         0.145           29          -0.01026         0.005203  18034.715 14367.430136  3.882795 1.635338   0.031373 2.220446e-17
+  FGSM_eps8   full          200         0.510          102          -0.01837         0.004555 147641.790   740.814151 12.054608 0.030275   0.031373 0.000000e+00
+ FGSM_eps16 lesion          200         0.160           32          -0.01082         0.005410  18034.715 14367.430136  7.765591 3.270677   0.062745 1.841097e-17
+ FGSM_eps16   full          200         0.395           79          -0.01703         0.004723 147641.790   740.814151 24.109216 0.060550   0.062745 4.644396e-17
+PGD_steps10 lesion          200         0.555          111          -0.01952         0.010925  16534.720 12736.481306  3.331320 1.241068   0.031373 2.271892e-17
+PGD_steps10   full          200         0.975          195          -0.04523         0.005703 129667.750  3355.734344  8.980486 0.356590   0.031373 0.000000e+00
+PGD_steps20 lesion          200         0.580          116          -0.02069         0.011690  17122.115 13331.711486  3.467272 1.311234   0.031373 2.309724e-17
+PGD_steps20   full          200         0.975          195          -0.05010         0.005875 137224.040  2012.680655  9.609844 0.297904   0.031373 0.000000e+00
+PGD_steps40 lesion          200         0.595          119          -0.02138         0.012180  17444.025 13720.241018  3.527104 1.352176   0.031373 2.207397e-17
+PGD_steps40   full          200         0.975          195          -0.05400         0.006214 142121.000  1200.376108  9.960083 0.279156   0.031373 0.000000e+00
+
+## KEY FINDINGS
+--------------------------------------------------------------------------------
+
+### 1. Attack Success Rates
+   - PGD-40 Lesion Attack: 59.5%
+   - PGD-40 Full Attack: 97.5%
+   - Ratio: 1.64x (Full/Lesion)
+
+### 2. Perturbation Magnitude (L2 Norm)
+   - PGD-40 Lesion Attack: 3.53
+   - PGD-40 Full Attack: 9.96
+   - Ratio: 2.82x (Full/Lesion)
+
+### 3. Attack Efficiency
+   - Lesion Attack: 16.87% success per unit L2
+   - Full Attack: 9.79% success per unit L2
+   - Lesion attack is 1.72x more efficient (when successful)
+
+### 4. Modified Pixels
+   - Lesion Attack: 17444 pixels (11.6% of image)
+   - Full Attack: 142121 pixels (94.4% of image)
+   - Ratio: 8.15x (Full/Lesion)
+
+## CONCLUSIONS
+--------------------------------------------------------------------------------
+
+1. **Full-image attacks are significantly more effective**
+   - 97.5% success vs 59.5% for lesion attacks (PGD-40)
+   - Suggests model relies on global image features, not just lesion regions
+
+2. **Lesion attacks require less perturbation**
+   - 2.8x smaller L2 norm compared to full attacks
+   - 8x fewer pixels modified
+   - More efficient but less effective
+
+3. **PGD significantly outperforms FGSM**
+   - Iterative optimization crucial for success
+   - Single-step attacks insufficient for lesion-targeted approaches
+
+4. **Clinical Implications**
+   - High-success attacks require modifying large portions of the image
+   - This makes adversarial perturbations easier to detect
+   - Lesion-only attacks harder to detect but less reliable
+
+================================================================================
+END OF REPORT
+================================================================================

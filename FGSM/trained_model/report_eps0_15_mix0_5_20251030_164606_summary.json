@@ -1,0 +1,29 @@
+{
+  "device": "cpu",
+  "epochs": 5,
+  "lr": 0.001,
+  "batch_size": 64,
+  "epsilon_train": 0.15,
+  "mix_ratio": 0.5,
+  "use_pred_label": true,
+  "random_start": true,
+  "epsilons_test": [
+    0,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3
+  ],
+  "accuracies": [
+    0.9908,
+    0.9808,
+    0.9654,
+    0.9479,
+    0.9225,
+    0.8869,
+    0.8294
+  ],
+  "model_path": "./trained_model\\lenet_mnist_adv_eps0_15_mix0_5_20251030_164606.pth"
+}

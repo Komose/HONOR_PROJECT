@@ -1,0 +1,7 @@
+dataset/
+*.dcm
+*.jpg
+*.png
+*.zip
+nul
+*.tar.gz
