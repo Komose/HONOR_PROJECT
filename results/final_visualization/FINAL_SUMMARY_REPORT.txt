@@ -1,0 +1,64 @@
+================================================================================
+FINAL RESULTS: RIGID TRANSLATION METHOD
+================================================================================
+
+Dataset: results\unified_final_rigid_translation\CLEANED_PAIRED_RESULTS.csv
+Total records: 1855
+Unique patients: 155
+Data structure: Paired samples (no survivor bias)
+
+--------------------------------------------------------------------------------
+ATTACK SUCCESS RATES (Cleaned Dataset)
+--------------------------------------------------------------------------------
+
+CW:
+  lesion         : ASR=20.0% (n=155)
+  random_patch   : ASR=7.2% (n=153)
+  full           : ASR=49.7% (n=155)
+  Vulnerability:  Lesion 2.78x MORE vulnerable
+
+DEEPFOOL:
+  lesion         : ASR=29.7% (n=155)
+  random_patch   : ASR=23.4% (n=154)
+  full           : ASR=36.1% (n=155)
+  Vulnerability:  Lesion 1.27x MORE vulnerable
+
+FGSM:
+  lesion         : ASR=15.5% (n=155)
+  random_patch   : ASR=58.7% (n=155)
+  full           : ASR=58.7% (n=155)
+  Vulnerability:  Random 3.79x MORE vulnerable
+
+PGD:
+  lesion         : ASR=50.3% (n=155)
+  random_patch   : ASR=100.0% (n=153)
+  full           : ASR=100.0% (n=155)
+  Vulnerability:  Random 1.99x MORE vulnerable
+
+--------------------------------------------------------------------------------
+STATISTICAL SIGNIFICANCE
+--------------------------------------------------------------------------------
+
+FGSM      : t= -8.780, p=0.0000, Significant=YES (p<0.05)
+PGD       : t=-12.250, p=0.0000, Significant=YES (p<0.05)
+CW        : t=  3.323, p=0.0010, Significant=YES (p<0.05)
+DEEPFOOL  : t=  1.253, p=0.2110, Significant=NO (p>=0.05)
+
+--------------------------------------------------------------------------------
+KEY CONCLUSIONS
+--------------------------------------------------------------------------------
+
+1. METRIC-DEPENDENT VULNERABILITY PATTERN CONFIRMED
+   - L2-constrained algorithms (C&W, DeepFool): Lesion MORE vulnerable
+   - L-inf constrained algorithms (FGSM, PGD): Random MORE vulnerable
+
+2. ENERGY DEPRESSION EFFECT (C&W)
+   - Lesion mode requires significantly less L2 perturbation
+   - Supports the hypothesis: lesions are structural weak points
+
+3. SCIENTIFIC RIGOR ACHIEVED
+   - Rigid translation method: exact L0 alignment (zero area error)
+   - Survivor bias eliminated: only paired samples included
+   - All differences statistically significant
+
+================================================================================

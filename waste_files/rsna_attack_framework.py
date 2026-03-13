@@ -177,9 +177,9 @@ def fgsm_attack(model, images, masks, epsilon, targeted=False, attack_mode='lesi
     # Get gradient
     grad = images.grad.data
 
-    # FIXED: Apply mask for both 'lesion' and 'random_patch' modes
-    if attack_mode != 'full':
-        grad = grad * masks  # Zero out gradients outside mask
+    # Apply mask if lesion attack
+    if attack_mode == 'lesion':
+        grad = grad * masks  # Zero out gradients outside lesion
 
     # FGSM step
     sign_grad = grad.sign()
@@ -188,8 +188,8 @@ def fgsm_attack(model, images, masks, epsilon, targeted=False, attack_mode='lesi
     # Apply perturbation
     adv_images = images + perturbations
 
-    # FIXED: Apply mask to perturbation for both 'lesion' and 'random_patch'
-    if attack_mode != 'full':
+    # Apply mask to perturbation (ensure only lesion is modified)
+    if attack_mode == 'lesion':
         adv_images = images * (1 - masks) + adv_images * masks
 
     return adv_images.detach(), perturbations.detach()
@@ -234,8 +234,8 @@ def pgd_attack(model, images, masks, epsilon, alpha, num_steps, targeted=False, 
         # Get gradient
         grad = adv_images.grad.data
 
-        # FIXED: Apply mask for both 'lesion' and 'random_patch' modes
-        if attack_mode != 'full':
+        # Apply mask if lesion attack
+        if attack_mode == 'lesion':
             grad = grad * masks
 
         # PGD step
@@ -244,8 +244,8 @@ def pgd_attack(model, images, masks, epsilon, alpha, num_steps, targeted=False, 
         # Project back to epsilon ball
         perturbations = torch.clamp(adv_images - images, -epsilon, epsilon)
 
-        # FIXED: Apply mask to perturbation for both 'lesion' and 'random_patch'
-        if attack_mode != 'full':
+        # Apply mask to perturbation
+        if attack_mode == 'lesion':
             perturbations = perturbations * masks
 
         adv_images = images + perturbations

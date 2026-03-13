@@ -60,6 +60,23 @@ class CheXzeroForAttack(nn.Module):
 
         return logits
 
+class MaskedAttackWrapper:
+    """
+    Wrapper to apply mask constraints to torchattacks attacks.
+
+    This enables lesion-targeted attacks with torchattacks library.
+    """
+
+    def __init__(self, attack_fn, mask: torch.Tensor, attack_mode: str = 'lesion'):
+        """
+        Args:
+            attack_fn: torchattacks attack instance
+            mask: (B, C, H, W) binary mask
+            attack_mode: 'lesion', 'random_patch', or 'full'
+        """
+        self.attack_fn = attack_fn
+        self.mask = mask
+        self.attack_mode = attack_mode
 
 class MaskedCWAttack:
     """
@@ -298,7 +315,7 @@ def fgsm_attack_unified(
         fgsm.set_mode_targeted_by_label()
 
         if attack_mode != 'full':
-            from unified_attack_framework import MaskedAttackWrapper
+
             wrapper = MaskedAttackWrapper(fgsm, masks, attack_mode)
             adv_images = wrapper(images, labels)
         else:

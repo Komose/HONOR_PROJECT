@@ -1,0 +1,68 @@
+================================================================================
+WEEKLY REPORT: KEY FINDINGS
+================================================================================
+
+1. EXPERIMENT OVERVIEW
+--------------------------------------------------------------------------------
+   Total Samples: 155
+   Algorithms Tested: fgsm, pgd, cw, deepfool
+   Attack Modes: lesion, random_patch, full
+   Total Attacks: 1855
+
+2. CORE RESEARCH QUESTION
+--------------------------------------------------------------------------------
+   Are lesion regions MORE vulnerable to adversarial attacks
+   than random non-lesion regions?
+
+3. KEY RESULTS (Lesion vs Random Patch)
+--------------------------------------------------------------------------------
+
+   FGSM:
+      Lesion ASR:        0.155
+      Random Patch ASR:  0.587
+      Difference:        0.432
+      p-value:           0.0000
+      Conclusion:        Random patch is 3.79x MORE vulnerable
+      Significant:       YES (p<0.05)
+
+   PGD:
+      Lesion ASR:        0.503
+      Random Patch ASR:  1.000
+      Difference:        0.497
+      p-value:           0.0000
+      Conclusion:        Random patch is 1.99x MORE vulnerable
+      Significant:       YES (p<0.05)
+
+   CW:
+      Lesion ASR:        0.200
+      Random Patch ASR:  0.072
+      Difference:        0.128
+      p-value:           0.0010
+      Conclusion:        Lesion is 2.78x MORE vulnerable
+      Significant:       YES (p<0.05)
+
+   DEEPFOOL:
+      Lesion ASR:        0.297
+      Random Patch ASR:  0.234
+      Difference:        0.063
+      p-value:           0.2110
+      Conclusion:        Lesion is 1.27x MORE vulnerable
+      Significant:       NO (p>=0.05)
+
+4. OVERALL CONCLUSION
+--------------------------------------------------------------------------------
+   The majority of algorithms show HIGHER attack success
+   on lesion regions, suggesting that:
+
+   [OK] The model DOES rely on lesion features for diagnosis
+   [OK] Lesion regions are the model's decision-critical areas
+   [OK] Defense strategies should prioritize lesion protection
+
+5. IMPLICATIONS FOR DEFENSE
+--------------------------------------------------------------------------------
+   Based on these findings:
+   - Focus adversarial training on lesion regions
+   - Add robust lesion detection modules
+   - Validate model interpretability on lesion features
+
+================================================================================

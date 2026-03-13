@@ -1,0 +1,9 @@
+,,success,success,success,confidence_drop,confidence_drop,efficiency,efficiency,l2_norm,l2_norm
+,,mean,std,count,mean,std,mean,std,mean,std
+algorithm,mode,,,,,,,,,
+fgsm,full,0.381,0.4859,1000,0.016,0.0047,0.002,0.0017,18.8432,16.5881
+fgsm,lesion,0.126,0.332,1000,0.0086,0.0051,0.0029,0.0023,6.0333,6.3016
+fgsm,random_patch,0.043,0.203,767,0.003,0.0024,0.001,0.0009,4.9595,4.9445
+pgd,full,0.975,0.1562,1000,0.0498,0.0171,0.0053,0.0026,14.2755,11.4737
+pgd,lesion,0.563,0.4963,1000,0.0212,0.0155,0.0053,0.0027,4.9624,4.6623
+pgd,random_patch,0.215,0.4111,772,0.0086,0.0088,0.0021,0.0012,4.2141,3.8644

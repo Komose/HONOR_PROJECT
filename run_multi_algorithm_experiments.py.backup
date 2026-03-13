@@ -283,9 +283,10 @@ def main():
     print("Model loaded\n")
 
     # Define epsilon values for robustness curve (FGSM/PGD)
-    # Full epsilon sweep after bug fix (2026-03-13)
-    # Testing: ε ∈ {2, 4, 8, 16, 32}/255
-    EPSILON_VALUES = [2/255, 4/255, 8/255, 16/255, 32/255]
+    # As requested by supervisor: test multiple epsilon values
+    # NOTE: 8/255 already tested, focusing on new values
+    # Added 32/255 as extreme comparison (2026-03-13)
+    EPSILON_VALUES = [1/255, 2/255, 4/255, 16/255, 32/255]
 
     # Define algorithms and their parameters
     # FINAL OPTIMIZED PARAMETERS (2026-03-06)
