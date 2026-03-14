@@ -148,8 +148,10 @@ class MaskedCWAttack:
             else:
                 adv_images = adv_images_candidate
 
-            # Compute L2 loss (using original torchattacks method)
-            current_L2 = MSELoss(Flatten(adv_images), Flatten(images)).sum(dim=1)
+            # Compute L2 loss - CRITICAL FIX: Only compute on masked region!
+            # Calculate perturbation only in masked area
+            masked_perturbation = (adv_images - images) * effective_mask
+            current_L2 = (masked_perturbation ** 2).sum(dim=(1, 2, 3))  # Sum over C, H, W
             L2_loss = current_L2.sum()
 
             # Compute classification loss
@@ -182,6 +184,11 @@ class MaskedCWAttack:
 
             mask_update = mask_update.view([-1] + [1] * (dim - 1))
             best_adv_images = mask_update * adv_images.detach() + (1 - mask_update) * best_adv_images
+
+        # CRITICAL FIX: Explicitly enforce mask constraint before returning
+        # This ensures perturbations are ONLY in the masked region
+        if self.attack_mode != 'full':
+            best_adv_images = images + (best_adv_images - images) * effective_mask
 
         return best_adv_images
 
@@ -240,6 +247,10 @@ class MaskedDeepFoolAttack:
 
             adv_images[i:i+1] = self._deepfool_single(image, mask_i)
 
+        # CRITICAL FIX: Explicitly enforce mask constraint before returning
+        if self.attack_mode != 'full':
+            adv_images = images + (adv_images - images) * effective_mask
+
         return adv_images
 
     def _deepfool_single(self, image, mask):
@@ -289,6 +300,10 @@ class MaskedDeepFoolAttack:
                 adv_image = torch.clamp(adv_image, 0, 1)
 
             adv_image = adv_image.detach()
+
+        # CRITICAL FIX: Final mask enforcement before returning
+        if mask is not None:
+            adv_image = image + (adv_image - image) * mask
 
         return adv_image
 

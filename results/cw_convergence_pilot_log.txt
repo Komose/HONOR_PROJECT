@@ -1,0 +1,19 @@
+==========================================================================================
+C&W CONVERGENCE PILOT STUDY
+Date: 2026-03-14 02:46:30
+==========================================================================================
+
+Tested 3 patients
+Parameters: c=50.0, kappa=0.0, lr=0.05
+
+steps= 100: L2=   0.000 ¡À  0.000
+steps= 250: L2=   0.000 ¡À  0.000
+steps= 500: L2=   0.000 ¡À  0.000
+steps=1000: L2=   0.000 ¡À  0.000
+
+Convergence Decision:
+  steps=100: relative error = nan%
+  steps=250: relative error = nan%
+  steps=500: relative error = nan%
+
+[DECISION] Using steps=1000 for C&W main experiments
